@@ -9,3 +9,5 @@ Set up project
 
 * clone this repository (https://github.com/no0n3/flappy_flight.git) or download the project
 * go to 'public/index.html'
+
+Made by Velizar Ivanov
