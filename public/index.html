@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body {
+    margin: 0px;
+}
+#canvas {
+    border: 1px solid black;
+}
+</style>
+</head>
+<body>
+    <div style="margin: 10px; text-align: center;">
+        <h1>Score <span id="score">0</span></h1>
+        <button onclick="vi.game.mute(this)">mute</button>
+        <span id="info"></span>
+    </div>
+    <canvas id="canvas" width="780" height="320"></canvas>
+
+    <div style="position: fixed; bottom: 0px; padding: 10px;">
+        Made by Velizar Ivanov
+    </div>
+
+<!--<script src="http://code.jquery.com/jquery.js"></script>-->
+<script src="js/all.js"></script>
+<script>
+
+$(function() {
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    $(window).on('resize', setCanvasWidth);
+    setCanvasWidth();
+    function setCanvasWidth() {
+        canvas.width = $(window).width() - 2;
+    }
+
+    document.addEventListener("keydown", function(e) {
+        if(32 === e.keyCode) {
+            flap();
+            e.preventDefault();
+        }
+    }, false);
+    canvas.addEventListener("click", function(e) {
+        flap();
+        e.preventDefault();
+    }, false);
+
+    function flap() {
+        if (false === vi.game.isGameOver()) {
+                bird.flap();
+            } else {
+                vi.game.start();
+            }
+    }
+
+    var bird = new vi.Bird(150, (canvas.height >> 1));
+
+    vi.game.init({
+        canvas : canvas,
+        ctx : ctx,
+        bird : bird
+    });
+
+});
+
+</script>
+</body>
+</html>
